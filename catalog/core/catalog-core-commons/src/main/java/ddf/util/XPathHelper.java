@@ -141,37 +141,6 @@ public class XPathHelper {
    * @param encoding - the character encoding to use for the returned String
    * @return the Node as a String, null if an exception is thrown or null is passed in.
    */
-  //  public static String print(Node n, String encoding) {
-  //    if (n == null) {
-  //      return null;
-  //    }
-  //
-  //    try {
-  //      Document document = null;
-  //
-  //      if (n instanceof Document) {
-  //        document = (Document) n;
-  //      } else {
-  //        document = n.getOwnerDocument();
-  //      }
-  //      StringWriter stringOut = new StringWriter();
-  //
-  //      DOMImplementationLS domImpl = (DOMImplementationLS) document.getImplementation();
-  //      LSSerializer serializer = domImpl.createLSSerializer();
-  //      LSOutput lsOut = domImpl.createLSOutput();
-  //      lsOut.setEncoding(encoding);
-  //      lsOut.setCharacterStream(stringOut);
-  //
-  //      serializer.write(n, lsOut);
-  //
-  //      return stringOut.toString();
-  //    } catch (DOMException | LSException e) {
-  //      LOGGER.debug(e.getMessage(), e);
-  //    }
-  //
-  //    return null;
-  //  }
-
   public static String print(Node n, String encoding) {
     if (n == null) {
       return null;
@@ -187,16 +156,17 @@ public class XPathHelper {
       }
       StringWriter stringOut = new StringWriter();
 
-      DOMImplementationLS domImpl = (DOMImplementationLS) document.getImplementation();
+      //      DOMImplementationLS domImpl = (DOMImplementationLS) document.getImplementation();
       LSSerializer serializer = new LSSerializerImpl(); // domImpl.createLSSerializer();
 
-      LSOutput lsOut = domImpl.createLSOutput();
-      lsOut.setEncoding(encoding);
-      lsOut.setCharacterStream(stringOut);
+      //      LSOutput lsOut = domImpl.createLSOutput();
+      //      lsOut.setEncoding(encoding);
+      //      lsOut.setCharacterStream(stringOut);
 
-      serializer.write(n,lsOut);
+      //      serializer.write(n, lsOut);
+      return serializer.writeToString(n);
 
-      return stringOut.toString();
+      //      return stringOut.toString();
     } catch (DOMException | LSException e) {
       LOGGER.debug(e.getMessage(), e);
     }
